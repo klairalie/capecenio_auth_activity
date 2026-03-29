@@ -2,8 +2,8 @@
 <html>
 
 <head>
-        <title>Login</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>Login</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body class="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -32,12 +32,18 @@
                 <label class="block text-sm font-medium text-gray-700">Password</label>
                 <input type="password" name="password" class="input-field" />
             </div>
+            <div class="flex items-center text-sm">
+                <input type="checkbox" name="remember" class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                    {{ old('remember') ? 'checked' : '' }}>
+                <span class="ml-2 text-gray-700">Remember me</span>
+            </div>
             <div>
                 <button type="submit" class="btn-primary">Login</button>
             </div>
         </form>
 
-        <p class="text-center mt-4 text-sm text-gray-600"><a href="{{ route('register.form') }}" class="text-indigo-600 hover:underline">Create account</a></p>
+        <p class="text-center mt-4 text-sm text-gray-600"><a href="{{ route('register.form') }}"
+                class="text-indigo-600 hover:underline">Create account</a></p>
     </div>
 </body>
 

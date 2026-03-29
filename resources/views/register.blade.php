@@ -2,8 +2,8 @@
 <html>
 
 <head>
-        <title>Register</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>Register</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body class="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -25,6 +25,13 @@
                 <input type="text" name="name" value="{{ old('name') }}" class="input-field" />
             </div>
             <div>
+                <label class="block text-sm font-medium text-gray-700">Role</label>
+                <select name="role" class="input-field">
+                    <option value="user" selected>User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div>
                 <label class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" name="email" value="{{ old('email') }}" class="input-field" />
             </div>
@@ -41,7 +48,8 @@
             </div>
         </form>
 
-        <p class="text-center mt-4 text-sm text-gray-600"><a href="{{ route('login.form') }}" class="text-indigo-600 hover:underline">Already have an account? Login</a></p>
+        <p class="text-center mt-4 text-sm text-gray-600"><a href="{{ route('login.form') }}"
+                class="text-indigo-600 hover:underline">Already have an account? Login</a></p>
     </div>
 </body>
 

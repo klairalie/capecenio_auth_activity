@@ -22,11 +22,14 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
+            'role' => 'nullable|string|in:user,admin',
         ]);
+        $role = $request->input('role', 'user');
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $role,
         ]);
         return redirect()->route('login.form')->with('success', 'Registration successful. Please login.');
     }
@@ -43,8 +46,11 @@ class AuthController extends Controller
         $remember = $request->has('remember');
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return
-                redirect()->route('dashboard');
+            $user = Auth::user();
+            if ($user && ($user->role ?? 'user') === 'admin') {
+                return redirect()->route('admin');
+            }
+            return redirect()->route('dashboard');
         }
         return back()->withErrors([
             'email' => 'Invalid email or password.',
